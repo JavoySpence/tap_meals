@@ -1,0 +1,107 @@
+#navbar-brand{
+    background-color: blue;
+    height: 3.7rem;
+    width: 9rem;
+    border-radius: 10px;
+}
+
+#hero-img{
+    width: 85%;
+    height: 26rem;
+}
+
+#img-thumbnail{
+  width: 25rem;
+  height: 12rem;
+  border-radius: 20px;
+  margin-top: 0.5rem;
+  margin-left: 6.5rem;
+}
+
+.container-lg{
+    position: relative;
+}
+
+.navbar-expand-lg {
+    position: fixed;
+    width: 85%;
+}
+
+#container-md-1 {
+    margin-top: 4rem;
+    /* margin-left: 1rem; */
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: #ede9e9;
+    width: 85%;
+}
+
+#container-md-1-header{
+    margin-left: 16rem;
+}
+
+#container-md-1-text{
+    margin-left: 13rem;
+}
+
+#login-btn-div{
+    margin-top: 1rem;
+    margin-left: 19rem;
+}
+#login-btn{
+    margin-top: 4rem;
+    width: 15rem;
+}
+
+#card1{
+
+    margin-top: 3rem;
+    margin-left: 15rem;
+    /* width: 20rem;
+     */
+     z-index: 10;
+}
+
+#image1{
+    width: 38rem;
+    border-radius: 20px;
+}
+
+.container-sm-bottom{
+    background-color: black;
+    width: 95%;
+    color: white;
+}
+
+.home-foot{
+    margin-left: 29rem;
+}
+
+#social-media-icons{
+    margin-left: 27.4rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+}
+#social-media-icons2{
+    margin-left: 1rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+}
+
+.homepage-foot{
+    margin-top: 1rem;
+}
+
+#hero-img2{
+    height: 29rem;
+    width: 85%;
+}
+
+.bootstrap_card1{
+    width: 10rem;
+}
