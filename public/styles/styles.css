@@ -105,3 +105,51 @@
 .bootstrap_card1{
     width: 10rem;
 }
+
+#contactPageImg{
+    width: 28.7rem;
+    margin-left: 5rem;
+    border-radius: 23px;
+    margin-top: 3rem;
+}
+#contactPageImg2{
+    position: absolute;
+    top: 0;
+    width: 28.7rem;
+    margin-left: 2rem;
+    border-radius: 23px;
+    margin-top: 29em;
+}
+
+#contactPageFoot{
+    position: absolute;
+    top: 0;
+    margin-top: 65rem;
+    width: 75%;
+    margin-left: 10rem;
+}
+
+#contactPage_socialmedia_icons{
+    margin-left: 25.4rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+}
+#contactPage_socialmedia_icons2{
+    position: absolute;
+    margin-left: 7.4rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+}
+
+#contactPage_socialmedia_icons3{
+    position: absolute;
+    margin-left: 2.2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+}
