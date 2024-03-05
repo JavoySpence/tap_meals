@@ -18,6 +18,34 @@
         </div>
     </nav>
 
+    <table table class="table" style=" width: 50rem;" id="contactPageTable">
+      <!-- <h1 style="margin-top: 25rem;">LOCIONS INFO</h1> -->
+      <thead class="table-dark">
+          <tr>
+           
+              <th>LOCATION</th>
+              <th>ADDRESS</th>
+              
+          </tr>
+      </thead>
+     
+      <tbody>
+        <% if (data.length > 0) { %>
+            <% for (let i = 0; i < data.length; i++) { %>
+                <tr>
+                   
+                    <td><%= data[i].location %></td>
+                    <td><%= data[i].address %></td>
+                  
+                </tr>
+            <% } %>
+        <% } else { %>
+            <tr>
+                <td colspan="3">No data available</td>
+            </tr>
+        <% } %>
+    </tbody>
+
     <div class="container-lg" style="background-color: azure; height: 85rem; ">
        <img src="public/images/IMG_5644-scaled.webp" id="hero-img" style="margin-left: 5.5rem;">
 
@@ -28,6 +56,8 @@
      
     
     </div>
+    
+  
 
     <div class="container-sm-bottom" style="border-radius: 18px; "  id="contactPageFoot">
         <img src="public/images/Screenshot_28-2-2024_172122_www.bing.com.jpeg" id="contactPage_socialmedia_icons">
@@ -35,11 +65,11 @@
         <img src="public/images/Screenshot_28-2-2024_173657_www.bing.com.jpeg" id="contactPage_socialmedia_icons3">
         <p class="home-foot">
         <pre> 
-                                4th Floor PCJ Resource Centre, 36 Trafalgar Road, Kingston 10, Jamaica
+                                     4th Floor PCJ Resource Centre, 36 Trafalgar Road, Kingston 10, Jamaica
     
-                                                  Tel: 876 926-4USF / 876 926-1727 
-                                                          Fax: 876 960-8981 
-                                                        Email: info@usf.gov.jm
+                                                       Tel: 876 926-4USF / 876 926-1727 
+                                                              Fax: 876 960-8981 
+                                                           Email: info@usf.gov.jm
         </pre> 
         </p>
       </div>

@@ -9,6 +9,7 @@ const  app = express();
 const PORT = 3013;
 
 import {mealRoutes} from './routes/mealRoutes.js';
+import { contactRoutes } from './routes/contactRoutes.js';
 
 app.set('view engine', 'ejs');
 
@@ -19,7 +20,8 @@ app.use('/public', express.static('public'));
 app.use(morgan('dev'));
 
 app.use('/', mealRoutes);
-// app.use('/', homeRoutes);
+app.use('/', contactRoutes);
+
 
 app.use('/', express.static('public'));
 

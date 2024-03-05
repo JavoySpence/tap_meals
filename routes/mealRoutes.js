@@ -10,7 +10,3 @@ mealRoutes.get('/homePage', async (req, res) => {
 mealRoutes.get('/about', async (req, res) => {
     res.render('about')
 });
-
-mealRoutes.get('/contactPage', async (req, res) =>{
-    res.render('contact')
-})
