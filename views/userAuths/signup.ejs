@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="scss/_utilities.scss.">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+   <div class="loginContainer" style="margin-left: 25rem;">
+    <div style="margin-left: 11rem;"><h1>SIGN UP</h1></div>
+
+   <form action="/signup" method="post">
+
+    <div class="container-md">
+            <div class="form-floating mb-3">
+                 <input type="text" class="form-control" id="floatingInput" name="first_name" placeholder="FIRSTNAME" style="width: 28rem">
+                 <label for="floatingInput">FIRSTNAME</label>
+          </div>
+
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingPassword" name="last_name" placeholder="LASTNAME" style="width: 28rem"> 
+            <label for="floatingPassword">LASTNAME</label>
+          </div> <br>
+
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingPassword" name="location"  placeholder="LOCATION" style="width: 28rem"> 
+            <label for="floatingPassword">LOCATION</label>
+          </div> <br>
+
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingPassword" name="position"   placeholder="POSITION" style="width: 28rem"> 
+            <label for="floatingPassword">POSITION</label>
+          </div> <br>
+
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name="password"   placeholder="PASSWORD" style="width: 28rem"> 
+            <label for="floatingPassword">PASSWORD</label>
+          </div>
+
+          
+
+    </div>
+<br>
+    <button type="submit" class="btn btn-danger" id="login_submit_button">SIGN UP</button>
+  </form>
+
+ </div>
+</body>
+</html>

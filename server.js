@@ -10,6 +10,7 @@ const PORT = 3013;
 
 import {mealRoutes} from './routes/mealRoutes.js';
 import { contactRoutes } from './routes/contactRoutes.js';
+import { authRoutes } from './routes/auth.js';
 
 app.set('view engine', 'ejs');
 
@@ -21,6 +22,7 @@ app.use(morgan('dev'));
 
 app.use('/', mealRoutes);
 app.use('/', contactRoutes);
+app.use('/', authRoutes)
 
 
 app.use('/', express.static('public'));

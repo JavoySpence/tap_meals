@@ -164,3 +164,8 @@
     margin-top: 56rem;
     margin-left: 16rem;
 }
+
+#login_submit_button{
+    margin-left: 1rem;
+    width: 28rem;
+}
