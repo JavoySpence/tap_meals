@@ -15,7 +15,7 @@ export const pool = mysql.createPool({
 // ==============================================================================================================================
 // contact
 // ==============================================================================================================================
-export const getAllContacts = async ( )=> {
+export const getAllContacts = async () => {
    const result = await pool.query('SELECT * FROM contact_information');
    return result[0];
 }

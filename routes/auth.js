@@ -1,10 +1,11 @@
 import express  from 'express';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 import {createUser, getAllUsers} from '../data/database.js';
 
 
 
 export const authRoutes = express.Router();
+
 
 authRoutes.get('/signupforms', async (req, res) => {
     res.render('userAuths/signup')
@@ -13,6 +14,7 @@ authRoutes.get('/signupforms', async (req, res) => {
 authRoutes.get('/loginforms', async (req, res) => {
     res.render('userAuths/login')
 });
+
 
 
 authRoutes.get('/users', async (req, res) => {
@@ -48,6 +50,7 @@ authRoutes.post('/signup', async (req, res) => {
 });
 
 
+
 authRoutes.post('/login', async (req, res) => {
     const { first_name, last_name, location, position, password } = req.body;
 
@@ -66,12 +69,16 @@ authRoutes.post('/login', async (req, res) => {
             return res.status(401).send('Wrong Password');
         }
 
-        res.send('Login successful');
+        req.session.user = user;
+
+        
+        res.redirect('/contactPage?message=Login%20successful');
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal server error');
     }
 });
+
 
 authRoutes.get('/deleteUser', async (req, res) => {
     const id = req.params.id ;

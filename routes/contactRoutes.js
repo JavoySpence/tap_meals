@@ -1,12 +1,46 @@
 import express  from 'express';
+import session from 'express-session';
 import { getAllContacts, newContact, deleteContact , singleContact, updateContact } from '../data/database.js';
 
 export const contactRoutes = express.Router();
 
-contactRoutes.get('/contactPage', async (req, res) => {
-    const data = await getAllContacts()
-    res.render('contacts/contact', {data})
+let loggedin = false;
+
+
+contactRoutes.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+      maxAge: 60000 * 2,
+  }
+}));
+
+const isAuthenticated = (req, res, next) => {
+  if (req.session && req.session.user) {
+      return next();
+  } else {
+      req.session.returnTo = req.originalUrl;
+      try {
+          return res.redirect('/loginforms');
+      } catch (error) {
+          console.error('Error redirecting to login page:', error);
+          return res.status(500).send('Internal Server Error');
+      }
+  }
+};
+
+
+contactRoutes.get('/contactPage',  async (req, res) => {
+  try {
+      const data = await getAllContacts();
+      res.render('contacts/contact', { data });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+  }
 });
+
 
 contactRoutes.get('/contactsList', async (req, res) => {
     const contactList = await getAllContacts();
