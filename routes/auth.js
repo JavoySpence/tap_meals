@@ -1,6 +1,6 @@
 import express  from 'express';
 import bcrypt from 'bcrypt';
-import {createUser, getAllUsers, getAllRoles } from '../data/database.js';
+import {createUser, getAllUsers, getAllRoles, getAllContacts } from '../data/database.js';
 
 
 
@@ -9,12 +9,15 @@ export const authRoutes = express.Router();
 
 authRoutes.get('/signupforms', async (req, res) => {
     const data = await getAllRoles();
+    const locationsData = await getAllContacts();
     console.log(data)
-    res.render('userAuths/signup', {data})
+    res.render('userAuths/signup', {data,locationsData})
 });
 
 authRoutes.get('/loginforms', async (req, res) => {
-    res.render('userAuths/login')
+     const data = await getAllRoles()
+     const locationsData = await getAllContacts()
+    res.render('userAuths/login', {data, locationsData} )
 });
 
 
@@ -51,13 +54,11 @@ authRoutes.post('/signup', async (req, res) => {
 });
 
 
-
 authRoutes.post('/login', async (req, res) => {
     const { first_name, last_name, location, position, password } = req.body;
 
     try {
         const users = await getAllUsers();
-
         const user = users.find(u => u.first_name === first_name && u.last_name === last_name && u.location === location && u.position === position);
 
         if (!user) {
@@ -71,9 +72,7 @@ authRoutes.post('/login', async (req, res) => {
         }
 
         req.session.user = user;
-
-        
-        res.redirect('/contactPage?message=Login%20successful');
+        res.redirect('/mealPage?message=Login%20successful');
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal server error');

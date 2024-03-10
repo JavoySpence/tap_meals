@@ -1,5 +1,6 @@
 import express from 'express';
 import session from 'express-session';
+import { getAllMeals, deleteSingleMeal } from '../data/database.js';
 
 
 export const mealRoutes = express.Router();
@@ -36,9 +37,41 @@ mealRoutes.get('/about',  async (req, res) => {
     res.render('about')
 });
 
-mealRoutes.get('/mealRoutes', async (req, res) => {
-    res.render('meals/meals_page')
+mealRoutes.get('/mealPage', isAuthenticated, async (req, res) => {
+    const mealsList = await getAllMeals()
+    res.render('meals/meals_page',
+    {
+        data: mealsList
+    })
 });
+
+
+mealRoutes.get('/deleteMeal/:id', async (req, res) => {
+    try{
+    const id = req.params.id;
+    const result = await deleteSingleMeal(id);
+    res.redirect('/meals_list');
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+})
+
+
+// mealRoutes.get('/adminPage', async (req, res) => {
+//     try {
+//         const locationList = await getAllContacts();
+//         // const mealsList = await getAllMeals();
+
+//         res.render('meals/admin', {
+//             data: locationList,
+//             // mealsList: mealsList 
+//         });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ success: false, message: 'Internal Server Error' });
+//     }
+// });
 
 
 

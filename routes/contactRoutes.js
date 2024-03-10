@@ -53,17 +53,22 @@ contactRoutes.get('/contactInputs', async (req, res) => {
 
 
 contactRoutes.post('/newContact', async (req, res) => {
- try{
-   const newEntry = new Object();
-   newEntry.location = req.body.location
-   newEntry.address = req.body.address
+  try {
+      const newEntry = new Object();
+      newEntry.location = req.body.location;
+      newEntry.address = req.body.address;
 
-   const result = await newContact(newEntry);
-   res.redirect('/contactsList')
- } catch (error) {
-    console.log(error)
- }
+      console.log("New Entry:", newEntry);
+
+      const result = await newContact(newEntry);
+
+      res.redirect('/contactsList');
+  } catch (error) {
+      console.error("Error inserting new contact:", error);
+      res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 });
+
 
 
 contactRoutes.get('/delete/:id', async (req, res) => {

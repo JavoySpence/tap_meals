@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+    <button class="btn btn-danger"  onclick="window.location.href='/contactInputs'">ADD</button> <br>
     <table class="table" style="margin-top: 1rem;">
         <thead class="table-dark">
             <tr>
                 <th style="text-align:left;">ID</th>
                 <th colspan="2" style="text-align:center;">MEAL</th>
                 <th colspan="2" style="text-align:center;">Image OF MEAL</th>
+                <th colspan="2" style="text-align: center;">ACTION</th>
             </tr>
         </thead>
     
@@ -25,6 +27,10 @@
                         <td style="text-align:left;"><%= data[i].id %></td>
                         <td colspan="2" style="text-align:center;"><%= data[i].meal_name %></td>
                         <td colspan="2" style="text-align:center;"><%= data[i].image %></td>
+                        <td colspan="1" style="text-align: center;">
+                           <button class="btn btn-danger"  onclick="window.location.href='/contactInputs'">EDIT</button>
+                           <button class="btn btn-danger"  onclick="window.location.href='/deleteMeal/<%= data[i].id %>'">DELETE</button>
+                        </td>
                     </tr>
                 <% } %>
             <% } else { %>

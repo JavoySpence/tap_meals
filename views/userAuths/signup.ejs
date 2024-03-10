@@ -25,12 +25,21 @@
             <label for="floatingPassword">LASTNAME</label>
           </div> <br>
 
-          <div class="form-floating">
+          <!-- <div class="form-floating">
             <input type="text" class="form-control" id="floatingPassword" name="location"  placeholder="LOCATION" style="width: 28rem"> 
             <label for="floatingPassword">LOCATION</label>
-          </div> <br>
+          </div> <br> -->
 
-          <select name="position">
+          <select name="location" style="width: 20rem;">
+            <option value="">SELECT LOCATION</option>
+            <% for (let i = 0; i < locationsData.length; i++) { %>
+                <option value="<%= locationsData[i].location %>"><%= locationsData[i].location %></option>
+            <% } %>
+        </select> <br><br>
+        
+
+          <select name="position" style="width: 20rem;">
+            <option value="">ROLE</option>
             <% for (let i = 0; i < data.length; i++) { %>
                 <option value="<%= data[i].position %>"><%= data[i].position %></option>
             <% } %>

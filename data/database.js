@@ -17,6 +17,8 @@ export const pool = mysql.createPool({
 // ==============================================================================================================================
 export const getAllContacts = async () => {
    const result = await pool.query('SELECT * FROM contact_information');
+
+   console.log(result)
    return result[0];
 }
 
@@ -52,6 +54,8 @@ export const updateContact = async (oContact) => {
         throw error; 
     }
 };
+
+
 
 
 
@@ -103,5 +107,12 @@ export const addMeal = async (oMeal) => {
   );
   console.log(oMeal);
   return result[0];
+}
+
+export const deleteSingleMeal = async (id) => {
+    const result = await pool.query('DELETE FROM meals_data WHERE id =?',
+    [id]
+    );
+    return result[0];
 }
 

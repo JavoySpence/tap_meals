@@ -19,10 +19,24 @@
         </div>
     </nav>
 
-        
-  <img src="public/images/20180625_172440.webp" class="rounded mx-auto d-block" id="meals_page_heroImage" >
-
-
     
+  <div class="container-lg" style="background-color: azure;">
+
+        
+  <img src="public/images/20180625_172440.png" class="rounded mx-auto d-block" id="meals_page_heroImage" >
+
+  <h1 id="meal_page_head">MENU </h1>
+
+  <div class="card-container" style="margin-left: 5rem; margin-top: 4rem; display: flex; flex-wrap: wrap; gap: 3rem;">
+    <% data.forEach(function(meal) { %>
+      <div class="card" style="width: 18rem;">
+        <img src="/uploads/<%= meal.image %>" class="card-img-top" alt="Meal Image">
+        <div class="card-body">
+          <h5 class="card-title">Meal Name: <%= meal.meal_name %></h5>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+  
 </body>
 </html>
