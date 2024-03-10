@@ -30,12 +30,18 @@
             <label for="floatingPassword">LOCATION</label>
           </div> <br>
 
-          <div class="form-floating">
+          <select name="position">
+            <% for (let i = 0; i < data.length; i++) { %>
+                <option value="<%= data[i].position %>"><%= data[i].position %></option>
+            <% } %>
+        </select>
+        
+          <!-- <div class="form-floating">
             <input type="text" class="form-control" id="floatingPassword" name="position"   placeholder="POSITION" style="width: 28rem"> 
             <label for="floatingPassword">POSITION</label>
-          </div> <br>
+          </div> <br> -->
 
-          <div class="form-floating">
+          <div class="form-floating" style="margin-top: 1.5rem;">
             <input type="password" class="form-control" id="floatingPassword" name="password"   placeholder="PASSWORD" style="width: 28rem"> 
             <label for="floatingPassword">PASSWORD</label>
           </div>

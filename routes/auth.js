@@ -1,6 +1,6 @@
 import express  from 'express';
 import bcrypt from 'bcrypt';
-import {createUser, getAllUsers} from '../data/database.js';
+import {createUser, getAllUsers, getAllRoles } from '../data/database.js';
 
 
 
@@ -8,13 +8,14 @@ export const authRoutes = express.Router();
 
 
 authRoutes.get('/signupforms', async (req, res) => {
-    res.render('userAuths/signup')
+    const data = await getAllRoles();
+    console.log(data)
+    res.render('userAuths/signup', {data})
 });
 
 authRoutes.get('/loginforms', async (req, res) => {
     res.render('userAuths/login')
 });
-
 
 
 authRoutes.get('/users', async (req, res) => {
@@ -90,6 +91,12 @@ authRoutes.get('/deleteUser', async (req, res) => {
 authRoutes.get('/userList', async (req, res) => {
     const usersList = await getAllUsers();
     res.render('userAuths/usersList', { data: usersList });
+});
+
+
+authRoutes.get('/allRoles', async (req, res) => {
+    const roles = await getAllRoles();
+    res.render('userAuths/rolesList', { data: roles });
 });
 
 

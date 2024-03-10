@@ -1,5 +1,7 @@
 import express from 'express';
 import session from 'express-session';
+
+
 export const mealRoutes = express.Router();
 
 mealRoutes.use(session({
@@ -26,12 +28,18 @@ mealRoutes.use(session({
   };
 
 
-mealRoutes.get('/homePage', async (req, res) => {
+mealRoutes.get('/homePage',  async (req, res) => {
     res.render('homepage')
 });
 
 mealRoutes.get('/about',  async (req, res) => {
     res.render('about')
 });
+
+mealRoutes.get('/mealRoutes', async (req, res) => {
+    res.render('meals/meals_page')
+});
+
+
 
 

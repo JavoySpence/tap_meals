@@ -58,6 +58,12 @@ export const updateContact = async (oContact) => {
 // ==========================================================================================================================
 //  USERS
 // ============================================================================================================================
+export const getAllRoles = async () => {
+    const result = await pool.query('SELECT * FROM position');
+    return result[0];   
+}
+
+
 
 export const createUser = async (oUser) => {
     const result = await pool.query(
@@ -66,6 +72,7 @@ export const createUser = async (oUser) => {
     );
     return result[0];
 }
+
 
 export const deleteUser = async (id) => {
     const result = await pool.query('DELETE FROM users WHERE id = ?',
@@ -81,4 +88,20 @@ export const getAllUsers = async () => {
 }
 
 
+// ============================================================================================================
+// data to render on meals page
+// ===========================================================================================================
+
+export const getAllMeals = async () => {
+    const result = await pool.query('SELECT * FROM meals_data');
+    return result[0];
+}
+
+export const addMeal = async (oMeal) => {
+  const result = await pool.query('INSERT INTO meals_data (meal_name, image) VALUES(?, ?)',
+   [oMeal.meal_name, oMeal.image]
+  );
+  console.log(oMeal);
+  return result[0];
+}
 
