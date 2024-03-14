@@ -4,7 +4,8 @@ import fs from 'fs';
 import fileUpload from 'express-fileupload';
 import { getRandomHexValues } from './utils.js';
 import path from 'path';
-import { getAllMeals, addMeal } from '../data/database.js'; // Assuming `addMeal` function exists in your database module
+import paginate from 'express-paginate';
+import { getAllMeals, addMeal, getAllDays } from '../data/database.js'; 
 
 export const uploadRoutes = express.Router();
 
@@ -52,6 +53,7 @@ uploadRoutes.post('/newMeal', async (req, res) => {
 
         newEntry.meal_name = req.body.meal_name;
         newEntry.image = vFile;
+    
 
         const result = await addMeal(newEntry);
 
@@ -65,14 +67,16 @@ uploadRoutes.post('/newMeal', async (req, res) => {
 
 
 uploadRoutes.get('/meals_list', async (req, res) => {
-    const mealsList = await getAllMeals();
-    res.render('meals/meals_list', {data: mealsList})
+    const data = await getAllMeals();
+    res.render('meals/meals_list', {data})
 });
+
 
 uploadRoutes.get('/mealsInputs', async (req, res) => {
-    res.render('meals/mealsInputs')
+    
+        res.render('meals/mealsInputs');
+    
 });
-
 
 
 

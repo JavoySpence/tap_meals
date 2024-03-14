@@ -46,7 +46,7 @@ authRoutes.post('/signup', async (req, res) => {
         newEntry.password = hashedPassword;
 
         const userId = await createUser(newEntry);
-        res.redirect('/signupForms');
+        res.redirect('/homePage');
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ error: 'Failed to create user' });

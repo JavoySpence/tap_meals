@@ -19,24 +19,70 @@
         </div>
     </nav>
 
-    
-  <div class="container-lg" style="background-color: azure;">
-
-        
-  <img src="public/images/20180625_172440.png" class="rounded mx-auto d-block" id="meals_page_heroImage" >
-
-  <h1 id="meal_page_head">MENU </h1>
-
-  <div class="card-container" style="margin-left: 5rem; margin-top: 4rem; display: flex; flex-wrap: wrap; gap: 3rem;">
-    <% data.forEach(function(meal) { %>
-      <div class="card" style="width: 18rem;">
-        <img src="/uploads/<%= meal.image %>" class="card-img-top" alt="Meal Image">
-        <div class="card-body">
-          <h5 class="card-title">Meal Name: <%= meal.meal_name %></h5>
-        </div>
+    <div class="container-lg" style="background-color: azure;">
+      <img src="public/images/20180625_172440.png" class="rounded mx-auto d-block" id="meals_page_heroImage">
+      <h1 id="meal_page_head" style="margin-left: 25rem;">TODAY'S MENU</h1>
+      <div class="card-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around; margin-top: 4rem;" >
+          <% if (data && data.length) { %>
+              <% data.forEach(function(item) { %>
+                  <div class="card" style="width: 18rem;">
+                      <img src="uploads/<%= item.image %>" class="card-img-top" alt="Meal Image" style="width: 100%; height: 200px; object-fit: cover;">
+                      <div class="card-body">
+                          <h5 class="card-title">Meal Name: <%= item.meal_name %></h5>
+                      </div>
+                  </div>
+              <% }); %>
+          <% } else { %>
+              <p>No data available</p>
+          <% } %>
       </div>
-    <% }); %>
+
+      <nav aria-label="Page navigation" style="margin-left: 5rem; margin-top: 3rem;">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="/mealPage?page=1">Previous Day's Menu</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="/mealPage?page=2">Next Day's Menu</a>
+            </li>
+          
+        </ul>
+    </nav>
+
+
+    <div class="container-sm-bottom" style="border-radius: 18px; margin-top: 8rem; margin-left: 1.8rem;" >
+      <img src="public/images/Screenshot_28-2-2024_172122_www.bing.com.jpeg" id="social-media-icons">
+      <img src="public/images/Screenshot_28-2-2024_17300_www.bing.com.jpeg" id="social-media-icons2">
+      <img src="public/images/Screenshot_28-2-2024_173657_www.bing.com.jpeg" id="social-media-icons2">
+      <p class="home-foot">
+      <pre> 
+                                     4th Floor PCJ Resource Centre, 36 Trafalgar Road, Kingston 10, Jamaica
+  
+                                                      Tel: 876 926-4USF / 876 926-1727 
+                                                              Fax: 876 960-8981 
+                                                            Email: info@usf.gov.jm
+      </pre> 
+      </p>
+    </div>  
   </div>
   
+
+
+      
+
+  </div>
+  
+    
+
+
+  
+  
+  
+  
+  
+  
+
+    
+
 </body>
 </html>

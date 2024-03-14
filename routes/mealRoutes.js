@@ -1,9 +1,12 @@
 import express from 'express';
 import session from 'express-session';
-import { getAllMeals, deleteSingleMeal } from '../data/database.js';
+import paginate from 'express-paginate';
+
+import { getAllMeals, deleteSingleMeal, getTotalMealsCount, getAllDays } from '../data/database.js';
 
 
 export const mealRoutes = express.Router();
+
 
 mealRoutes.use(session({
     secret: 'keyboard cat',
@@ -13,6 +16,7 @@ mealRoutes.use(session({
         maxAge: 60000 * 1,
     }
   }));
+
   
   const isAuthenticated = (req, res, next) => {
     if (req.session && req.session.user) {
@@ -37,13 +41,23 @@ mealRoutes.get('/about',  async (req, res) => {
     res.render('about')
 });
 
-mealRoutes.get('/mealPage', isAuthenticated, async (req, res) => {
-    const mealsList = await getAllMeals()
-    res.render('meals/meals_page',
-    {
-        data: mealsList
-    })
-});
+
+mealRoutes.get('/mealPage', paginate.middleware(6, 50), isAuthenticated, async (req, res) => {
+  const limit = req.query.limit;
+  const offset = req.skip; 
+  
+    const itemList = await getAllMeals(limit, offset);
+    const itemCount = await getTotalMealsCount();
+
+    const pageCount = Math.ceil(itemCount / limit)
+  
+    res.render('meals/meals_page', {
+      data: itemList,
+      pageCount: pageCount,
+      itemCount: itemCount,
+      pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+    });
+})
 
 
 mealRoutes.get('/deleteMeal/:id', async (req, res) => {
@@ -55,8 +69,10 @@ mealRoutes.get('/deleteMeal/:id', async (req, res) => {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-})
+});
 
+
+ 
 
 // mealRoutes.get('/adminPage', async (req, res) => {
 //     try {

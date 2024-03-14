@@ -38,13 +38,12 @@
         </select> <br><br>
         
 
-          <select name="position" style="width: 20rem;">
-            <option value="">ROLE</option>
-            <% for (let i = 0; i < data.length; i++) { %>
-                <option value="<%= data[i].position %>"><%= data[i].position %></option>
-            <% } %>
-        </select>
-        
+        <select name="position" style="width: 20rem;">
+          <option value="">ROLE</option>
+          <% for (let i = 0; i < data.length; i++) { %>
+              <option value="<%= data[i].position %>"><%= data[i].position %></option>
+          <% } %>
+      </select>
           <!-- <div class="form-floating">
             <input type="text" class="form-control" id="floatingPassword" name="position"   placeholder="POSITION" style="width: 28rem"> 
             <label for="floatingPassword">POSITION</label>

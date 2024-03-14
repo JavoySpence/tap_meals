@@ -95,19 +95,31 @@ export const getAllUsers = async () => {
 // ============================================================================================================
 // data to render on meals page
 // ===========================================================================================================
-
-export const getAllMeals = async () => {
-    const result = await pool.query('SELECT * FROM meals_data');
+export const getAllMeals = async (limit, offset) => {
+    const result = await pool.query('SELECT * FROM meals_data LIMIT ? OFFSET ?', [limit, offset]);
     return result[0];
-}
+};
 
-export const addMeal = async (oMeal) => {
-  const result = await pool.query('INSERT INTO meals_data (meal_name, image) VALUES(?, ?)',
-   [oMeal.meal_name, oMeal.image]
-  );
-  console.log(oMeal);
-  return result[0];
-}
+
+  
+ export  const getTotalMealsCount = async () => {
+    const result =  await pool.query('SELECT COUNT(*) AS itemCount FROM meals_data');
+    return result[0].itemCount;
+ };
+  
+  
+
+export const addMeal = async (newEntry) => {
+    try {
+        const queryText = 'INSERT INTO meals_data (meal_name, image) VALUES (?, ?)';
+        const values = [newEntry.meal_name, newEntry.image]
+
+        const result = await pool.query(queryText, values);
+        return result[0];
+    } catch (error) {
+        throw error;
+    }
+};
 
 export const deleteSingleMeal = async (id) => {
     const result = await pool.query('DELETE FROM meals_data WHERE id =?',
@@ -116,3 +128,10 @@ export const deleteSingleMeal = async (id) => {
     return result[0];
 }
 
+
+
+export const getAllDays = async () => {
+    const result = await pool.query('SELECT * FROM days;');
+    console.log(result)
+    return result;
+}
