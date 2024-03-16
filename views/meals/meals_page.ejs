@@ -37,18 +37,27 @@
           <% } %>
       </div>
 
-      <nav aria-label="Page navigation" style="margin-left: 5rem; margin-top: 3rem;">
+      <nav aria-label="Page navigation" class="mt-5 ml-5" style="margin-left: 4rem;">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="/mealPage?page=1">Previous Day's Menu</a>
+                <a class="page-link" href="/mealPage?page=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous Day</span>
+                </a>
             </li>
+         
             <li class="page-item">
-                <a class="page-link" href="/mealPage?page=2">Next Day's Menu</a>
+                <a class="page-link" href="/mealPage?page=2" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next Day</span>
+                </a>
             </li>
-          
         </ul>
     </nav>
+    
 
+
+    <button    class="btn btn-primary"   onclick="window.location.href='/ordersInputs'" style="margin-top: 2rem;  margin-left: 28.3rem; width: 12rem;" >ORDER NOW</button>
 
     <div class="container-sm-bottom" style="border-radius: 18px; margin-top: 8rem; margin-left: 1.8rem;" >
       <img src="public/images/Screenshot_28-2-2024_172122_www.bing.com.jpeg" id="social-media-icons">

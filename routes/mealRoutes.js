@@ -2,7 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import paginate from 'express-paginate';
 
-import { getAllMeals, deleteSingleMeal, getTotalMealsCount, getAllDays } from '../data/database.js';
+import { getAllMeals, deleteSingleMeal, getTotalMealsCount,  getAllMeals2, getAllRoles } from '../data/database.js';
 
 
 export const mealRoutes = express.Router();
@@ -34,7 +34,8 @@ mealRoutes.use(session({
 
 
 mealRoutes.get('/homePage',  async (req, res) => {
-    res.render('homepage')
+   const data = await getAllRoles()
+    res.render('homepage', {data})
 });
 
 mealRoutes.get('/about',  async (req, res) => {
@@ -60,6 +61,7 @@ mealRoutes.get('/mealPage', paginate.middleware(6, 50), isAuthenticated, async (
 })
 
 
+
 mealRoutes.get('/deleteMeal/:id', async (req, res) => {
     try{
     const id = req.params.id;
@@ -72,22 +74,9 @@ mealRoutes.get('/deleteMeal/:id', async (req, res) => {
 });
 
 
+
+
  
-
-// mealRoutes.get('/adminPage', async (req, res) => {
-//     try {
-//         const locationList = await getAllContacts();
-//         // const mealsList = await getAllMeals();
-
-//         res.render('meals/admin', {
-//             data: locationList,
-//             // mealsList: mealsList 
-//         });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ success: false, message: 'Internal Server Error' });
-//     }
-// });
 
 
 

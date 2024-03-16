@@ -5,7 +5,7 @@ import fileUpload from 'express-fileupload';
 import { getRandomHexValues } from './utils.js';
 import path from 'path';
 import paginate from 'express-paginate';
-import { getAllMeals, addMeal, getAllDays } from '../data/database.js'; 
+import { getAllMeals, addMeal} from '../data/database.js'; 
 
 export const uploadRoutes = express.Router();
 

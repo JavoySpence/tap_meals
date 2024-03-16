@@ -1,5 +1,6 @@
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
+
 // import bcrypt from 'bcrypt';
 
 
@@ -100,6 +101,10 @@ export const getAllMeals = async (limit, offset) => {
     return result[0];
 };
 
+// export const getAllOrders = async (limit, offset) => {
+//     const result = await pool.query('SELECT * FROM orders LIMIT 6 OFFSET 10', [limit, offset]);
+//     return result[0];
+//   };
 
   
  export  const getTotalMealsCount = async () => {
@@ -130,8 +135,41 @@ export const deleteSingleMeal = async (id) => {
 
 
 
-export const getAllDays = async () => {
-    const result = await pool.query('SELECT * FROM days;');
-    console.log(result)
-    return result;
+export const getAllMeals2 = async (limit, offset) => {
+    const result = await pool.query('SELECT * FROM meals_data ');
+    return result[0];
+};
+
+
+
+// ========================================================================================================
+// ORDERS
+// =======================================================================================================
+
+export const getAllOrders = async () => {
+    const result = await pool.query('SELECT * FROM orders');
+    return result[0] ;
 }
+
+
+
+export const newOrder = async (oOrder) => {
+    try {
+        console.log('Inserting new order:', oOrder);
+        const query = 'INSERT INTO orders (meal_ordered, stud_fn, stud_ln, location) VALUES (?, ?, ?, ?)';
+        const values = [oOrder.meal_ordered, oOrder.stud_fn, oOrder.stud_ln, oOrder.location];
+        console.log('Query:', query);
+        console.log('Values:', values); 
+        const result = await pool.query(query, values);
+        console.log('Insertion result:', result); 
+        return result[0];
+    } catch (error) {
+        console.error('Error inserting new order:', error); 
+        throw error;
+    }
+};
+
+
+
+
+
