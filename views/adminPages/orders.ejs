@@ -18,6 +18,8 @@
                 <th>STUDENT FIRSTNAME</th>
                 <th>STUDENT LASTNAME</th>
                 <th>LOCATION</th>
+                <th>EMAIL</th>
+                <th>ACTION</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +31,12 @@
                         <td> <%= data[i].stud_fn %></td>
                         <td> <%= data[i].stud_ln %></td>
                         <td> <%= data[i].location %></td>
+                        <td> <%= data[i].email %></td>
+                        <td>
+                            <button class="btn btn-danger"  onclick="window.location.href='/deleteOrder/<%= data[i].id %>'">CANCEL ORDER</button>
+                          
+                            
+                        </td>
                     </tr>
                 <% } %>
             <% } else { %>

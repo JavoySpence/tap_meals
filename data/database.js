@@ -156,8 +156,8 @@ export const getAllOrders = async () => {
 export const newOrder = async (oOrder) => {
     try {
         console.log('Inserting new order:', oOrder);
-        const query = 'INSERT INTO orders (meal_ordered, stud_fn, stud_ln, location) VALUES (?, ?, ?, ?)';
-        const values = [oOrder.meal_ordered, oOrder.stud_fn, oOrder.stud_ln, oOrder.location];
+        const query = 'INSERT INTO orders (meal_ordered, stud_fn, stud_ln, location, email) VALUES (?, ?, ?, ?, ?)';
+        const values = [oOrder.meal_ordered, oOrder.stud_fn, oOrder.stud_ln, oOrder.location, oOrder.email];
         console.log('Query:', query);
         console.log('Values:', values); 
         const result = await pool.query(query, values);
@@ -168,6 +168,25 @@ export const newOrder = async (oOrder) => {
         throw error;
     }
 };
+
+
+export const getSingleOrder = async (id) => {
+    const result = await pool.query('SELECT * FROM orders WHERE id =?',
+    [id]
+    );
+    return result[0];
+};
+
+
+export const deleteSingleOrder = async (id) => {
+    const result = await pool.query('DELETE FROM orders WHERE id =?',
+    [id]
+    );
+    return result[0];
+}
+
+
+
 
 
 

@@ -12,7 +12,8 @@ import {mealRoutes} from './routes/mealRoutes.js';
 import { contactRoutes } from './routes/contactRoutes.js';
 import { authRoutes } from './routes/auth.js';
 import {uploadRoutes} from './routes/uploadRoutes.js';
-import { adminRoutes } from './routes/admin.js';
+import { adminRoutes } from './routes/admin.js'; 
+
 
 app.set('view engine', 'ejs');
 

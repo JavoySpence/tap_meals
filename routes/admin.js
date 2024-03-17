@@ -1,7 +1,13 @@
 import express from 'express';
 import session from 'express-session';
 import paginate from 'express-paginate';
-import { getAllMeals2, getAllOrders, getTotalMealsCount, getAllContacts, newOrder  } from '../data/database.js';
+import { sendEmail } from '../utils/bookingEmail.js';
+
+
+// Use the Email class here
+
+
+import { getAllMeals2, getAllOrders, getTotalMealsCount, getAllContacts, newOrder, getSingleOrder,  deleteSingleOrder  } from '../data/database.js';
 
 export const adminRoutes = express.Router();
 
@@ -29,7 +35,7 @@ adminRoutes.get('/adminPage',  paginate.middleware(6, 50), isAuthenticated, asyn
 
     
     
-       const mealsList = await getAllMeals(limit, offset);
+       const mealsList = await getAllMeals2(limit, offset);
        const itemCount = await getTotalMealsCount();
 
        const pageCount = Math.ceil(itemCount / limit)
@@ -69,20 +75,29 @@ adminRoutes.get('/adminPage',  paginate.middleware(6, 50), isAuthenticated, asyn
 
 
   adminRoutes.post('/newOrder', async (req, res) => {
-   const newEntry = new Object();
-   newEntry.meal_ordered = req.body.meal_ordered;
-   newEntry.stud_fn = req.body.stud_fn;
-   newEntry.stud_ln = req.body.stud_ln;
-   newEntry.location = req.body.location;
-//    newEntry.status = req.body.status;
-
+    const newEntry = new Object();
+    newEntry.meal_ordered = req.body.meal_ordered;
+    newEntry.stud_fn = req.body.stud_fn;
+    newEntry.stud_ln = req.body.stud_ln;
+    newEntry.location = req.body.location;
+    newEntry.email = req.body.email;
+ 
+    await sendEmail(newEntry);
    const result = await newOrder(newEntry);
-   console.log(result)
-   res.redirect('/allOrders')
+ 
+   res.redirect('/ordersInputs');
+ 
+ });
+ 
+
+ adminRoutes.get('/deleteOrder/:id', async (req, res) => {
+  const id = req.params.id ;
+  const data = await deleteSingleOrder(id);
+  res.redirect('/allOrders')
+ });
 
 
-  });
-  
+
 
 
 
